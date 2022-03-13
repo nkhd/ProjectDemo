@@ -1,4 +1,4 @@
-image: salesforce/salesforcedx
+image: salesforce/salesforcedx:latest-full
 
 stages:
   - build
