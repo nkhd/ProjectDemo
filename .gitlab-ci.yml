@@ -1,3 +1,5 @@
+image: salesforce/salesforcedx
+
 stages:
   - build
   - test
@@ -6,6 +8,7 @@ stages:
 build-job:
   stage: build
   script:
+    - sfdx help
     - echo "Compiling the code..."
     - echo "Compile complete."
 
