@@ -2,26 +2,26 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 03-13-2022
+ * @last modified on  : 03-14-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public class CaseTriggerFactory {
     
-    public static CaseTriggerHandlerInterface getCaseTriggerHandler(String context) {
+
+    public static CaseTriggerHandlerInterface createCaseTriggerHandler() {
         
-        switch on context {
-            
-            when 'BEFORE_INSERT' {
+        switch on Trigger.operationType {
+            when BEFORE_INSERT {
                 
                 return new BeforeInsertCaseHnadlerService();
 
             }
-            when 'BEFORE_UPDATE' {
+            when BEFORE_UPDATE {
 
                 return new BeforeUpdateCaseHandlerService();
             }
             when else{
-                return null;
+                throw new NoSuchElementException();
             }
         }
         
