@@ -1,24 +1,19 @@
 image: salesforce/salesforcedx:latest-full
 
 stages:
-  - build
   - test
   - deploy
-
-build-job:
-  stage: build
-  script:
-    - sfdx force:config:set instanceUrl=https://d8d000000jb1keas-dev-ed.my.salesforce.com
-    - sfdx force:source:deploy --sourcepath force-app --targetusername 00D8d000000Jb1K!AQ8AQCELwUi1QMSvgCHWKGtGohUSly3Cv2FeyUKMez7IMBP25D8QzRP6iYx.OD7WeXs9X5J8_HcReeGm7bEZPR9Md0YVj568 
 
 unit-test-job:
   stage: test
   script:
-    - sfdx force:apex:test:run --classnames "BeforeInsertCaseHandlerServiceTest" --resultformat tap --codecoverage
+    - sfdx force:org:create -f project-scratch-def.json -a testingScratchOrg --setdefaultusername
+    - sfdx force:source:deploy --sourcepath force-app --targetusername testingScratchOrg
+    - sfdx force:apex:test:run --classnames "BeforeInsertCaseHandlerServiceTest" --resultformat tap --codecoverage --targetusername testingScratchOrg
 
 
 deploy-job:
   stage: deploy
   script:
-    - echo "Deploying application..."
-    - echo "Application successfully deployed."
+    - sfdx force:config:set instanceUrl=https://d8d000000jb1keas-dev-ed.my.salesforce.com
+    - sfdx force:source:deploy --sourcepath force-app --targetusername 00D8d000000Jb1K!AQ8AQCELwUi1QMSvgCHWKGtGohUSly3Cv2FeyUKMez7IMBP25D8QzRP6iYx.OD7WeXs9X5J8_HcReeGm7bEZPR9Md0YVj568 
