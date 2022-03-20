@@ -7,7 +7,7 @@ stages:
 unit-test-job:
   stage: test
   script:
-    - sfdx force:org:create -f project-scratch-def.json -a testingScratchOrg --setdefaultusername
+    - sfdx force:org:create -f sfdx-project.json -a testingScratchOrg --setdefaultusername
     - sfdx force:source:deploy --sourcepath force-app --targetusername testingScratchOrg
     - sfdx force:apex:test:run --classnames "BeforeInsertCaseHandlerServiceTest" --resultformat tap --codecoverage --targetusername testingScratchOrg
 

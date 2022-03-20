@@ -2,29 +2,25 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 03-13-2022
+ * @last modified on  : 03-20-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public class SendEmailDefaultService implements SendEmailServiceInterface{
     
     public void sendEmail(Contact c) {
 
-        Messaging.reserveSingleEmailCapacity(2);
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage(); 
+    
+        EmailTemplate emailTemplate = [Select Id,Subject,Description,Body, Markup  from EmailTemplate where DeveloperName =:EventBookingConfiguration.E2C_EMAIL_TEMPLATE];        
+        OrgWideEmailAddress orgWideEmailAddress = [select Id from OrgWideEmailAddress where DisplayName=:EventBookingConfiguration.ORG_WIDE_EMAIL_ADDRESS ];
 
         String[] toAddresses = new String[] {c.email}; 
-        
+    
+        //Change with Template ID
+        mail.setTemplateId(emailTemplate.Id); 
+        mail.setOrgWideEmailAddressId(orgWideEmailAddress.Id);
         mail.setToAddresses(toAddresses);
-
-        mail.setReplyTo('support@acme.com');
-        mail.setSenderDisplayName('Salesforce Support');
-        mail.setSubject('New Case Created : ' + c.Id);
-        mail.setBccSender(false);
-        mail.setUseSignature(false);
-        mail.setPlainTextBody('Your Case: ' + c.Id +' has been created.');
-        mail.setHtmlBody('Your case:<b> ' + c.Id +' </b>has been created.<p>'+
-            'To view your case <a href=https://yourInstance.salesforce.com/'+case.Id+'>click here.</a>');
-
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 
     }
