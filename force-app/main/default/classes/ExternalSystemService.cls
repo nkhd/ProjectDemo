@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 03-13-2022
+ * @last modified on  : 03-20-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public class ExternalSystemService implements ExternalSystemInterface {
@@ -62,7 +62,7 @@ public class ExternalSystemService implements ExternalSystemInterface {
             
         }
 
-        return null;
+        throw new Exception('Cannot brodcats Registration Event')
 
     }
 

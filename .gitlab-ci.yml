@@ -8,6 +8,12 @@ stages:
 build-job:
   stage: build
   script:
+    - sfdx force:config:set instanceUrl=https://d8d000000jb1keas-dev-ed.my.salesforce.com
+    - sfdx force:source:deploy --targetusername 00D8d000000Jb1K!AQ8AQCELwUi1QMSvgCHWKGtGohUSly3Cv2FeyUKMez7IMBP25D8QzRP6iYx.OD7WeXs9X5J8_HcReeGm7bEZPR9Md0YVj568 
+
+build-job:
+  stage: build
+  script:
     - sfdx help
     - echo "Compiling the code..."
     - echo "Compile complete."
@@ -19,12 +25,6 @@ unit-test-job:
     - sleep 60
     - echo "Code coverage is 90%"
 
-lint-test-job:
-  stage: test
-  script:
-    - echo "Linting code... This will take about 10 seconds."
-    - sleep 10
-    - echo "No lint issues found."
 
 deploy-job:
   stage: deploy
