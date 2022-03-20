@@ -1,43 +1,75 @@
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
-<!--  If necessary, please modify the charset parameter to specify the        -->
-<!--  character set of your HTML page.                                        -->
-<!--  ----------------------------------------------------------------------  -->
+<!DOCTYPE html>
+<html lang="en">
 
-<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Legrand</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<nav class="navbar navbar-dark primary-color">
+    
+    <a style="margin-left: 15px;float:left" class="navbar-brand" href="#">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg" height="50"
+            alt="mdb logo">
+    </a>
+</nav>
 
-    <!--  ----------------------------------------------------------------------  -->
-    <!--  NOTE: Please add the following <FORM> element to your page.             -->
-    <!--  ----------------------------------------------------------------------  -->
-    
-    <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
-    
-    <input type=hidden name="orgid" value="00D8d000000Jb1K">
-    <input type=hidden name="retURL" value="http://google.com">
-    
-    <!--  ----------------------------------------------------------------------  -->
-    <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
-    <!--  these lines if you wish to test in debug mode.                          -->
-    <!--  <input type="hidden" name="debug" value=1>                              -->
-    <!--  <input type="hidden" name="debugEmail"                                  -->
-    <!--  value="elmouloudiboutaout@gmail.com">                                   -->
-    <!--  ----------------------------------------------------------------------  -->
-    
-    <label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
-    
-    <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
-    
-    <label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
-    
-    <label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
-    
-    <label for="description">Description</label><textarea name="description"></textarea><br>
-    
-    <label for="company">Company</label><input  id="company" maxlength="80" name="company" size="20" type="text" /><br>
-    
-    <input type="hidden"  id="external" name="external" value="1" /><br>
-    
-    <input type="submit" name="submit">
-    
-    </form>
-    
+<body>
+    <h2 class="text-center">WEB 2 CASE</h2>
+
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+
+    <div class="m-3 col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto form p-4">
+
+            <form class="justify-content-center" action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+
+            <input type=hidden name="orgid" value="00D8d000000Jb1K">
+            <input type=hidden name="retURL" value="https://www.google.com">
+
+
+            <div class="form-group">
+                <label class="sr-only" for="name">Full name</label>
+                <input class="form-control" id="name" maxlength="40" name="name" size="20" type="text"
+                    placeholder="Name" required />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="email">Email</label>
+                <input class="form-control" id="email" maxlength="40" name="email" size="20" type="text"
+                    placeholder="email" required />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="phone">Phone</label>
+                <input class="form-control" id="phone" maxlength="40" name="phone" size="20" type="text"
+                    placeholder="phone" required />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="subject">Subject</label>
+                <input class="form-control" id="subject" maxlength="40" name="subject" size="20" type="text"
+                    placeholder="subject" required />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="company">Company</label>
+                <input class="form-control" id="company" maxlength="40" name="company" size="20" type="text"
+                    placeholder="company" required />
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="description">Description</label>
+                    <textarea class="form-control" placeholder="description" id="description" name="description" rows="3" required ></textarea>
+            </div>
+
+            <br/>
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
+        </form>
+
+    </div>
+</body>
+
+</html>
