@@ -9,15 +9,12 @@ build-job:
   stage: build
   script:
     - sfdx force:config:set instanceUrl=https://d8d000000jb1keas-dev-ed.my.salesforce.com
-    - sfdx force:source:deploy --targetusername 00D8d000000Jb1K!AQ8AQCELwUi1QMSvgCHWKGtGohUSly3Cv2FeyUKMez7IMBP25D8QzRP6iYx.OD7WeXs9X5J8_HcReeGm7bEZPR9Md0YVj568 
-    - echo "Compile complete."
+    - sfdx force:source:deploy --sourcepath force-app --targetusername 00D8d000000Jb1K!AQ8AQCELwUi1QMSvgCHWKGtGohUSly3Cv2FeyUKMez7IMBP25D8QzRP6iYx.OD7WeXs9X5J8_HcReeGm7bEZPR9Md0YVj568 
 
 unit-test-job:
   stage: test
   script:
-    - echo "Running unit tests... This will take about 60 seconds."
-    - sleep 60
-    - echo "Code coverage is 90%"
+    - sfdx force:apex:test:run --classnames "BeforeInsertCaseHandlerServiceTest" --resultformat tap --codecoverage
 
 
 deploy-job:
