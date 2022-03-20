@@ -62,7 +62,7 @@ public class ExternalSystemService implements ExternalSystemInterface {
             
         }
 
-        throw new Exception('Cannot brodcats Registration Event')
+        throw new BrodcatsRegistrationEventException();
 
     }
 
