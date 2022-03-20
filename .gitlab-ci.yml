@@ -1,12 +1,13 @@
 image: salesforce/salesforcedx:latest-full
 
 stages:
+  - deploy-to-test-org
   - test
   - deploy
 
 
 deploy-to-test-org:
-  stage: test
+  stage: deploy-to-test-org
   script:
     - sfdx force:config:set instanceUrl=$InstanceUrl
     - sfdx force:source:deploy --sourcepath force-app --targetusername $OrgToken
