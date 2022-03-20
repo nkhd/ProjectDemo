@@ -15,5 +15,5 @@ unit-test-job:
 deploy-job:
   stage: deploy
   script:
-    - sfdx force:config:set instanceUrl=https://d8d000000jb1keas-dev-ed.my.salesforce.com
-    - sfdx force:source:deploy --sourcepath force-app --targetusername 00D8d000000Jb1K!AQ8AQCELwUi1QMSvgCHWKGtGohUSly3Cv2FeyUKMez7IMBP25D8QzRP6iYx.OD7WeXs9X5J8_HcReeGm7bEZPR9Md0YVj568 
+    - sfdx force:config:set instanceUrl=$InstanceUrl
+    - sfdx force:source:deploy --sourcepath force-app --targetusername $OrgToken
