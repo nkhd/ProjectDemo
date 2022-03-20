@@ -1,7 +1,7 @@
 image: salesforce/salesforcedx:latest-full
 
 stages:
-  - setup
+  - test
   - deploy
 
 
