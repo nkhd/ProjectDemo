@@ -25,7 +25,7 @@ jobs:
         run: >
           #Generate package.xml between the current branch & 
 
-          node_modules/sfdx-cli/bin/run sgd:source:delta --to "HEAD" --from $(git merge-base HEAD origin/SPM-master-feature) --output . --source=force-app
+          node_modules/sfdx-cli/bin/run sgd:source:delta --to "HEAD" --from $(git merge-base HEAD origin/main) --output . --source=force-app
 
           echo "--- package.xml generated with added and modified metadata ---"
 
@@ -33,7 +33,7 @@ jobs:
       - name: Authentication to Dev
         run: >
           node_modules/sfdx-cli/bin/run config:set
-          instanceUrl=https://who--spmdev.sandbox.my.salesforce.com
+          instanceUrl=https://cgcloudcom-d-dev-ed.develop.my.salesforce.com/
       - name: Validate changes agains Dev
         run: >
-          node_modules/sfdx-cli/bin/run force:source:deploy -x package/package.xml -l NoTestRun --targetusername 00D7a000000562k!ASAAQA1HYuVRlyPZpM5aSo__pa_I5B7LNWd5KK_rlMfq.MwiCqudZ38HOftSFnMAyeM3yonqBGh7pwUOmLqcsvgV1995RJIs  -c
+          node_modules/sfdx-cli/bin/run force:source:deploy -x package/package.xml -l NoTestRun --targetusername 00D8d0000090I6m!ARkAQI0dADiULyfoYLmSVqqFbQRsdq4otDPaR4K5TirLCNY58zBkVcj6Fka57oUF_Yxsee1_DBsy3PxkEkd98RCBcQBuCyE7 -c
