@@ -2,8 +2,8 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 03-20-2022
- * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+ * @last modified on  : 02-11-2023
+ * @last modified by  : eboutaout@salesforce.com
 **/
 public class CaseTriggerFactory {
     
@@ -13,6 +13,7 @@ public class CaseTriggerFactory {
         switch on Trigger.operationType {
             when BEFORE_INSERT {
                 
+
                 return new BeforeInsertCaseHnadlerService();
 
             }
