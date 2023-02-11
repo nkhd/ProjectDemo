@@ -1,0 +1,37 @@
+---
+name: Dev-Validation
+on:
+  pull_request: null
+jobs:
+  build:
+    name: Pull request validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.0
+      - name: Install SFDX & SFDX Git Delta
+        run: |
+          npm install sfdx-cli
+          echo y | node_modules/sfdx-cli/bin/run plugins:install sfdx-git-delta
+      - name: Generate package.xml
+        run: >
+          #Generate package.xml between the current branch &
+          node_modules/sfdx-cli/bin/run sgd:source:delta --to "HEAD" --from $(git merge-base HEAD origin/SPM-master-feature) --output . --source=force-app
+          echo "--- package.xml generated with added and modified metadata ---"
+          cat package/package.xml
+      - name: Authentication to Dev
+        run: >
+          node_modules/sfdx-cli/bin/run config:set
+          instanceUrl=https://who--spmdev.sandbox.my.salesforce.com
+      - name: Validate changes agains Dev
+        run: >
+          node_modules/sfdx-cli/bin/run force:source:deploy -x package/package.xml -l NoTestRun --targetusername 00D7a000000562k!ASAAQNMjNWxugO03g7ID0CcMFwR17lTwS65_mda_u0dhNjWqZyQyGNPCw7ZR2iXHjROV_DiVnp4ejkFALaTK0DNbyEAI.DHa  -c
