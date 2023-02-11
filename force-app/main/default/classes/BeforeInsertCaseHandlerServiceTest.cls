@@ -13,7 +13,10 @@ public class BeforeInsertCaseHandlerServiceTest {
             // Given
     
             Case request = new Case(Origin = 'Phone',Subject = 'Event Booking', Description = 'Book Spots');
-            
+            /*Case request = (Case)TestDataFactory.createSObject('Case',new Map<String,Object>{
+                'Origin' => 'Phone',
+                'Subject' => 'Event Booking',
+                'Description' => 'Description of the related account'});*/
             // When 
 
             System.Test.startTest();
