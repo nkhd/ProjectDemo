@@ -56,6 +56,11 @@
                 <default>false</default>
                 <label>GC1020</label>
             </value>
+            <value>
+                <fullName>XXXXX</fullName>
+                <default>false</default>
+                <label>XXXXX</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
